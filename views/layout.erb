@@ -2,13 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hello World</title>
+  <title>Marvel Trading Cards</title>
   <link rel='stylesheet' href='/stylesheets/main.css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-  <%= yield %>
+    <nav>
+      <ul class="menu">
+        <li><a href="/">My Collection</a></li>
+        <li><a href="/marketplace">Marketplace</a></li>
+      </ul>
+      <header>
+        <h1>Marvel Trading Cards</h1>
+      </header>
+      <ul class="menu right">
+      <% if is_logged_in? %>
+        <% if is_admin? %>
+          <li><a href="/create">Create Cards</a></li>
+        <% end %>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/logout">Logout</a></li>
+      <% else %>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/sign-up">Sign Up</a></li>
+      
+      <% end %>
+      </ul>
+    </nav>
+  <section class="container">
+    
+    <%= yield %>
+  </section>
 
 </body>
 </html>
