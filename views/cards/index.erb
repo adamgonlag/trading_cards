@@ -1,0 +1,6 @@
+<h1>My Collection</h1>
+
+<% results.each do |card| %>
+   <p><%= card["name"] %> Edition: <%= card["card_edition"] %>/<%=card["quantity_released"] %></p>
+
+<% end %>

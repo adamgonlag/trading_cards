@@ -1,0 +1,37 @@
+<h1>Add Character to the Marketplace</h1>
+
+<form action="/character/new" method="POST">
+    <% if character_info %>
+        <label for="name">Name</label>
+        <input type="text" name="name" value="<%= character_info["name"] %>">
+        <label for="marvel_id">Marvel ID</label>
+        <input type="text" name="marvel_id" value="<%= character_info["id"] %>">
+        <label for="price">Starting Price</label>
+        <input type="number" name="price" value="10000">
+        <label for="quantity">Quantity to be released</label>
+        <input type="number" name="quantity" value=10>
+        <label for="backstory">Backstory</label>
+        <input type="text" name="backstory" value="<%= character_info["description"] %>">
+        <label for="image_url">Image URL</label>
+        <input type="text" name="image_url" value="<%= character_info["thumbnail"]["path"] %>">
+        <label for="num_comics">Comics</label>
+        <input type="text" name="num_comics" value="<%= character_info["comics"]["available"] %>">
+    <% else %>
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <label for="marvel_id">Marvel ID</label>
+        <input type="text" name="marvel_id" value="N/A" readonly>
+        <label for="price">Starting Price</label>
+        <input type="number" name="price">
+        <label for="quantity">Quantity to be released</label>
+        <input type="number" name="quantity">
+        <label for="backstory">Backstory</label>
+        <input type="text" name="backstory">
+        <label for="image_url">Image URL</label>
+        <input type="text" name="image_url">
+        <label for="num_comics">Comics</label>
+        <input type="text" name="num_comics">
+    <% end %>
+    <button type="submit">Add to Marketplace</button>
+</form>
+

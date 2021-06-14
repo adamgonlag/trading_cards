@@ -1,18 +1,45 @@
 get '/cards' do
-
     results = get_search_results()
-    p results
+
     erb :'cards/show', locals: {results: results}
   
 end
-    
-def get_search_results()
-    publicKey = ENV['MARVEL_API_PUBKEY']
-    privateKey = ENV['MARVEL_API_PRIVKEY']
-    ts = Time.now.getutc
-    hash = create_md5_hash(ts,privateKey,publicKey)
-    limit = 100
-    all_cards = "https://gateway.marvel.com:443/v1/public/characters?apikey=#{publicKey}&ts=#{ts}&hash=#{hash}&limit=#{limit}"
-    response = HTTParty.get(all_cards)
-    results = response["data"]["results"].to_a
+
+get '/cards/collection' do
+    user = current_user()
+    p user
+
+    if user
+        collection = get_user_collection(user["id"])
+        p collection
+        erb :'cards/index', locals: {results: collection}
+    else
+        redirect '/login'
+    end
+
 end
+
+get '/cards/:id' do
+    id = params[:id]
+
+    result = get_card_by_id(id)
+    p result
+    erb :'cards/show', locals: {result:result}
+end
+
+post '/cards/collection/add' do
+    card_id = params[:card_id]
+
+    p 'card id'
+    p card_id
+    user = current_user()
+    if user
+        add_to_collection(user["id"], card_id)
+        redirect '/'
+    else
+        redirect '/login'
+    end
+end
+
+
+

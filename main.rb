@@ -17,7 +17,7 @@ require_relative './models/character'
 require_relative './models/user'
 
 # Helper functions
-require_relative './helpers/cards_helper'
+require_relative './helpers/api_helper'
 require_relative './helpers/sessions_helper'
 
 # Controllers
@@ -27,7 +27,7 @@ require_relative './controllers/sessions_controller'
 require_relative './controllers/users_controller'
 
 get '/' do
-  erb :index
+  redirect '/cards/collection'
 end
 
 

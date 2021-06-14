@@ -1,3 +1,9 @@
-<% results.each do |result| %>
-    <p><%= result["name"] %></p>
-<% end %>
+<h1><%= result["name"] %></h1>
+
+<p><%= result["backstory"] %></p>
+<p>Edition: <%= result["card_edition"] %>/<%= result["quantity_released"] %> </p>
+
+<form action="/cards/collection/add" method="POST">
+    <input type="hidden" name="card_id" value="<%= result["id"] %>">
+    <button type="submit">Add to My Collection</button>
+</form>

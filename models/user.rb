@@ -21,11 +21,7 @@ def find_user(query, value)
     params = [value]
     sql_query = "SELECT * FROM users WHERE #{query} = $1;"
 
-    p params
-    p sql_query
     results = run_sql( sql_query, params )
-
-    p results.to_a[0]
     if results.to_a.length > 0
         return results[0]
     else

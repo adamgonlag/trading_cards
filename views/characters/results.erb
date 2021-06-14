@@ -1,0 +1,8 @@
+<h1>Character Search results</h1>
+
+<section class="results">
+        <% results.each do |result|%>
+            <p><a href="/character/new/<%= result["id"]%>"><%= result["name"] %></a></p>
+        <% end %>
+    
+</section>

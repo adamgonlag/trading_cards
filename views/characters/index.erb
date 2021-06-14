@@ -1,0 +1,10 @@
+<h1>Marketplace</h1>
+<form action="/marketplace">
+    <label for="query">Search</label>
+    <input type="text" name="query" placeholder="Search by character name">
+    <button type="submit">Go!</button>
+</form>
+
+<% results.each do |result| %>
+   <p><a href="/character/<%= result["id"] %>"><%= result["name"] %></a></p> 
+<% end %>

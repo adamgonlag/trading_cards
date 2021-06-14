@@ -16,7 +16,6 @@ end
 
 def is_admin?
     user = current_user()
-    p user
     if user && user["is_admin"] == "t"
         return true
     else

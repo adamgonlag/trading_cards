@@ -1,29 +1,35 @@
 get '/marketplace' do 
-    # get characters from db
-    results = all_characters()
-    p results
+    # if search used
+    if params["query"] 
+        query = params["query"]
+        results = get_characters(query)
+    else
+        results = all_characters()
+    end
     erb :'characters/index', locals: {results: results}
 end
 
 get '/character/create' do
-    erb :'characters/create'
+    if params[:query]
+        query = params["query"]
+        # get results from Marvel API
+        results = get_characters_from_marvel(query)
+    end
+    erb :'characters/create', locals: {results:results}
 end
 
-get 'character/:id' do 
+
+get '/character/:id' do 
     id = params[:id]
+
     # get character from db
     result = character_by_id(id)
 
-    erb :'characters/show', locals: {result:result}
-end
+    # get available cards of this character
+    cards = get_available_character_cards(id)
+    p cards
 
-get '/character/search' do
-    query = params[:query]
-
-    # get results from Marvel API
-    results = get_characters(query)
-    p results
-    erb :'characters/results', locals: {results:results}
+    erb :'characters/show', locals: {result:result, cards:cards}
 end
 
 get '/character/new/:marvel_id' do
