@@ -7,30 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <nav>
-      <ul class="menu">
-        <li><a href="/">My Collection</a></li>
-        <li><a href="/marketplace">Marketplace</a></li>
-      </ul>
-      <header>
-        <h1>Marvel Trading Cards</h1>
-      </header>
-      <ul class="menu right">
-      <% if is_logged_in? %>
-        <% if is_admin? %>
-          <li><a href="/character/create">Create Cards</a></li>
-        <% end %>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/logout">Logout</a></li>
-      <% else %>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/sign-up">Sign Up</a></li>
-      
+  <nav>
+    <ul class="menu">
+      <li><a href="/cards">My Collection</a></li>
+      <li><a href="/marketplace">Marketplace</a></li>
+      <% if is_admin? %>
+        <li><a href="/character/create">Create Cards</a></li>
       <% end %>
-      </ul>
-    </nav>
-  <section class="container">
+    </ul>
+    <header>
+      <h1>Marvel Trading Cards</h1>
+    </header>
+    <ul class="menu right">
+    <% if is_logged_in? %>
+      <li>My Balance: $<%= get_current_user_balance() %></li>
+      <li><a href="/users/profile">Profile</a></li>
+      <li><a href="/logout">Logout</a></li>
+    <% else %>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/sign-up">Sign Up</a></li>
     
+    <% end %>
+    </ul>
+  </nav>
+  <section class="container">
     <%= yield %>
   </section>
 

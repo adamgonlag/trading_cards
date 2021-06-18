@@ -8,7 +8,6 @@ post '/sessions' do
 
     user = find_user_by_email( email )
 
-    p user
     if user && BCrypt::Password.new(user['password_digest']) == password
         session[:user_id] = user['id']
         redirect '/'

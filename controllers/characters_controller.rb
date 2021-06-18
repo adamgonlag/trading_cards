@@ -19,19 +19,6 @@ get '/character/create' do
 end
 
 
-get '/character/:id' do 
-    id = params[:id]
-
-    # get character from db
-    result = character_by_id(id)
-
-    # get available cards of this character
-    cards = get_available_character_cards(id)
-    p cards
-
-    erb :'characters/show', locals: {result:result, cards:cards}
-end
-
 get '/character/new/:marvel_id' do
     marvel_id = params[:marvel_id]
     if marvel_id == "custom"
@@ -54,12 +41,16 @@ post '/character/new' do
     price = params[:price]
     quantity = params[:quantity]
     backstory = params[:backstory]
-    image_url = params[:image_url]
+    image_url = params[:image_url] + "/portrait_xlarge.jpg"
     num_comics = params[:num_comics]    
+    if marvel_id == "N/A"
+        image_url = params[:image_url]
+    end
+
     # add character to the db
     create_character(name, marvel_id, price, backstory, image_url, quantity, num_comics)
 
-    redirect '/'
+    redirect '/character/create'
 
 end
 

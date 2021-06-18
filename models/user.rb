@@ -28,3 +28,32 @@ def find_user(query, value)
         return nil
     end
 end
+
+def update_user(user_id, username, email)
+    params = [user_id, username, email]
+    sql_query = "UPDATE users SET username = $2, email = $3 WHERE id = $1;"
+
+    run_sql( sql_query, params )
+
+end
+
+def get_balance(user_id)
+    sql_query = "SELECT total_tokens FROM users WHERE id = $1;"
+    run_sql( sql_query, [user_id]).first
+end
+
+def update_buyer_balance(buyer_id, price)
+    balance =  get_balance(buyer_id)
+    new_balance = balance["total_tokens"].to_i - price
+    params = [buyer_id, new_balance]
+    sql_query = "UPDATE users SET total_tokens = $2 WHERE id = $1;"
+    run_sql( sql_query, params)
+end
+
+def update_seller_balance(seller_id, price)
+    balance =  get_balance(seller_id)
+    new_balance = balance["total_tokens"].to_i + price
+    params = [seller_id, new_balance]
+    sql_query = "UPDATE users SET total_tokens = $2 WHERE id = $1;"
+    run_sql( sql_query, params)
+end

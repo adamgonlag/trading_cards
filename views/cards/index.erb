@@ -1,6 +1,33 @@
-<h1>My Collection</h1>
-
-<% results.each do |card| %>
-   <p><%= card["name"] %> Edition: <%= card["card_edition"] %>/<%=card["quantity_released"] %></p>
-
+<% if any_listings_for_user? %>
+  <h1>My Cards Listed for Sale</h1>
+  <section class="listings">
+    <% listings.each do |listing| %>
+      <a href="/listings/<%= listing["id"] %>">
+        <article class="card listing">
+          <img src="<%= listing["image_url"]%>" alt="">
+          <aside>
+            <h3><%= listing["name"] %></h3>
+            <p>Edition: <%= listing["card_edition"] %>/<%=listing["quantity_released"] %></p>
+            <p>$<%= listing["price"] %></p>
+          </aside>
+        </article>
+      </a> 
+    <% end %>
+  </section>
 <% end %>
+
+<h1>My Cards</h1>
+<section class="cards">
+  <% results.each do |card| %>
+
+    <a href="/cards/<%= card["id"] %>">
+      <article class="card">
+        <img src="<%= card["image_url"]%>" alt="">
+        <aside>
+          <h3><%= card["name"] %></h3>
+          <p>Edition: <%= card["card_edition"] %>/<%=card["quantity_released"] %></p>
+        </aside>
+      </article>
+    </a> 
+  <% end %>
+</section>

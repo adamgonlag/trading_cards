@@ -1,9 +1,21 @@
-<h1><%= result["name"] %></h1>
+<section class="info-border wide">
+    <section class='info'>
+        <h1><%= result["name"] %> <span id='edition'>Edition <%= result["card_edition"] %>/<%= result["quantity_released"] %></span> </h1>
+        <aside class="info-items">
+            <p><%= result["backstory"] %></p>
+            <h3>Comics: <span class="info-text"><%= result["num_comics"] %></span></h3>
+            <h3>Initial Value: <span class="info-text">$<%= result["initial_price"] %></span></h3>
+            <h3>Price Paid: <span class="info-text">$<%= result["last_price_paid"] %></span></h3>
+            <h3>Current Owner: <span class="info-text"><%= result["username"] %></span></h3>
+        </aside>
 
-<p><%= result["backstory"] %></p>
-<p>Edition: <%= result["card_edition"] %>/<%= result["quantity_released"] %> </p>
+        <% if is_current_user_owner?(result["id"]) && !card_listed?(result["id"])%>
+            <form  action="/listings/add" method="GET">
+                <input type="hidden" name="card_id" value="<%= result["id"] %>">
+                <button type="submit">Sell card on the Marketplace</button>
+            </form>
+        <%end %>
+        <img src="<%= result["image_url"] %>" alt="">
+    </section>
+</section>
 
-<form action="/cards/collection/add" method="POST">
-    <input type="hidden" name="card_id" value="<%= result["id"] %>">
-    <button type="submit">Add to My Collection</button>
-</form>

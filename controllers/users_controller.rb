@@ -12,3 +12,23 @@ post '/users/new' do
 
     redirect '/'
 end
+
+get '/users/profile' do
+    user = current_user()
+
+    if user
+        erb :'users/show', locals: { user: user}
+    else
+        redirect '/login'
+    end
+
+end
+
+put '/users/profile' do
+    user = current_user()
+    username = params[:username]
+    email = params[:email]
+    update_user(user["id"], username, email)
+
+    redirect '/users/profile'
+end

@@ -1,0 +1,13 @@
+<section class="form-border wide">
+    <section class="form-box">
+        <h1>User Profile</h1>
+        <form action="/users/profile" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <label for="username">Username</label>
+            <input type="text" name="username" value="<%= user["username"] %>">
+            <label for="email">Email</label>
+            <input type="text" name="email" value="<%= user["email"] %>">
+            <button type="submit">Update</button>
+        </form>
+    </section>
+</section>

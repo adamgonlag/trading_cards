@@ -1,20 +1,30 @@
-<h1>Add a new character to the Marketplace</h1>
+<section class="form-border wide">
+    <section class="form-box centre-form">
+        <h1>Add a new character to the Marketplace</h1>
+        <h3>Option 1: Search using the Marvel API</h3>
+        <form action="/character/create">
+            <input class="inline-input" type="text" placeholder="Search by character name..." name="query">
+            <button class="inline-btn" type="submit">Search</button>
+        </form>
+        <h3>Option 2: Add custom character</h3>
+        <a href="/character/new/custom"><button>Add Custom Character</button></a>
+    </section>
+</section>
 
-<h3>Option 1: Search using the Marvel API</h3>
-
-<form action="/character/create">
-    <input type="text" placeholder="Search by character name..." name="query">
-    <button type="submit">Search</button>
-</form>
-
-<h3>Option 2: Add custom character</h3>
-
-<p>Please note: Custom characters do not appear in comics, and you must supply all information.</p>
-<a href="/character/new/custom"><button>Add Custom Character</button></a>
 
 <% if results %>
     <h3>Search Results:</h3>
-    <% results.each do |result|%>
-        <p><a href="/character/new/<%= result["id"]%>"><%= result["name"] %></a></p>
-    <% end %>
+    <section class="cards">
+        <% results.each do |result|%>
+            <a href="/character/new/<%= result["id"]%>">
+                <article class="card">
+                    <img src="<%= result["thumbnail"]["path"]%>/portrait_xlarge.jpg" alt="">
+                    <aside>
+                        <h3><%= result["name"] %></h3>
+                    </aside>
+                </article>
+            </a>
+        <% end %>
+    </section>
 <% end %>
+

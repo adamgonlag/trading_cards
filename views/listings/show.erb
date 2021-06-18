@@ -1,0 +1,35 @@
+<section class="info-border wide">
+    <section class='info'>
+        <h1><%= result["name"] %> <span id='edition'>Edition <%= result["card_edition"] %>/<%= result["quantity_released"] %></span> </h1>
+        <aside class="info-items">
+            <p><%= result["backstory"] %></p>
+            <h3>Asking Price: <span class="info-text">$<%= result["price"] %></span></h3>
+            <h3>Current Owner: <span class="info-text"><%= result["username"] %></span></h3>
+        </aside>
+        <aside class="listing-buttons">
+            <% if is_current_user_owner?(result["card_id"])%>
+
+                    <form action="/listings" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="listing_id" value="<%= result["id"] %>">
+                        <button class="inline-btn" type="submit">Remove Listing</button>
+                        <a href="/listings/edit/<%= result["id"] %>"><button type="button" class="inline-btn">Edit Asking Price</button></a> 
+                    </form>
+            <% else %>
+                    <form action="/cards/add" method="POST">
+                        <input type="hidden" name="card_id" value="<%= result["card_id"] %>">
+                        <input type="hidden" name="listing_id" value="<%= result["id"] %>">
+                        <input type="hidden" name="price" value="<%= result["price"] %>">
+                        <input type="hidden" name="seller_id" value="<%= result["user_id"] %>">
+                        <button class="inline-btn" type="submit">Purchase</button>
+                    </form>
+                    <% if error_message %>
+                        <p><%= error_message %></p>
+                    <%end %>
+            <%end %>
+        </aside>
+
+        <img src="<%= result["image_url"] %>" alt="">
+
+    </section>
+</section>

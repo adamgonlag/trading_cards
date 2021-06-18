@@ -1,10 +1,23 @@
-<h1>Marketplace</h1>
-<form action="/marketplace">
-    <label for="query">Search</label>
-    <input type="text" name="query" placeholder="Search by character name">
-    <button type="submit">Go!</button>
-</form>
+<section class="form-border wide">
+    <section class="form-box centre-form">
+        <h1>Marketplace</h1>
+        <form id="char-search" action="/marketplace">
+            <input class="inline-input" type="text" name="query" placeholder="Search by character name">
+            <button class="inline-btn" type="submit">Go!</button>
+            <a href="/marketplace"><button class="inline-btn" type="button">Clear</button></a> 
+        </form>
+    </section>
+</section>
 
-<% results.each do |result| %>
-   <p><a href="/character/<%= result["id"] %>"><%= result["name"] %></a></p> 
-<% end %>
+<section class="cards">
+    <% results.each do |result| %>
+        <a href="/listings/character/<%= result["id"] %>">
+            <article class="card">
+                <img src="<%= result["image_url"]%>" alt="">
+                <aside>
+                    <h3><%= result["name"] %></h3>
+                </aside>
+            </article>
+        </a> 
+    <% end %>
+</section>

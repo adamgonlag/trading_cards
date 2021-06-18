@@ -1,0 +1,13 @@
+<section class="form-border">
+    <section class="form-box">
+        <h1>Edit Listing</h1>
+        <form action="/listings" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="listing_id" value="<%= result["id"] %>">
+            <label for="price">Price ($)</label>
+            <input type="number" name="price" value="<%= result["price"] %>">
+            <button class="inline-btn" type="submit">Update</button>
+            <a href="/listings/<%= result["id"] %>"><button type="button" class="inline-btn">Cancel</button></a> 
+        </form>
+    </section>
+</section>

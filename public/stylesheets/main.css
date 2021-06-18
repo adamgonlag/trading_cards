@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body {
     box-sizing: border-box;
@@ -13,10 +14,9 @@ body {
     display: flex;
     flex-direction: column;
     padding: 0;
-    margin: 0 100px;
+    margin: 0 200px;
+    padding: 30px 50px;
 }
-
-
 
 nav {
     background: linear-gradient(180deg, rgba(54, 54, 54, 0.329) 0%, #232323 100%), url(https://s9.postimg.cc/kuroeqmgv/character-banner.jpg);
@@ -26,12 +26,9 @@ nav {
     justify-content: space-between;
     color: white;
     font-family: 'Bangers', cursive;
-    padding: 0 100px;
+    padding: 0 300px;
     font-size: 1.5rem;
     height: 200px
-
-
-
 }
 
 .menu {
@@ -77,5 +74,215 @@ nav header {
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    gap: 15px;
+    margin-bottom: 100px;
+}
+
+.card {
+    border: 10px solid rgb(138, 138, 138);
+    box-shadow: 2px 2px 8px #000000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: all .2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    border: 10px solid rgb(255, 200, 48);
+}
+
+.card aside {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(41, 41, 41, 0.747);
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    
+}
+
+.card h3, p {
+    padding: 2px 0;
+    margin: 0;
+}
+
+.info {
+    background-color: #CECECE;
+    color: rgb(32, 32, 32);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 
+    "name image"
+    "info image"
+    "form image";
+    padding: 50px;
+    padding-right: 0;
+    position: relative;
+}
+
+.info-border {
+    background: linear-gradient(180deg, rgba(32, 32, 32, 0) 30.13%, #910E0E 91.53%);
+    padding: 25px;
+    margin-top: 40px;
+    width: 60%;
+    margin: 40px auto;
+}
+
+.info .info-items {
+    grid-area: info; 
+}
+
+.info form {
+    grid-area: form;
+}
+
+.listings {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto;
+    gap: 15px
+}
+
+.listing {
+    border: 10px solid rgb(48, 56, 158);
+    
+}
+
+.listing-buttons {
+    grid-area: form;
+}
+
+.info img {
+    grid-area: image;
+    position: absolute;
+    right: -40px;
+    width: 70%;
+    object-fit: cover;
+    border: 10px solid rgb(87, 87, 87);
+    box-shadow: 2px 2px 8px #000000;
+}
+
+.info h1 {
+    margin: 0px;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    grid-area: name;
+    vertical-align: middle;
+
+}
+
+#edition {
+    background-color: rgb(48, 56, 158);
+    color: white;
+    border-radius: 30px;
+    font-size: 22px;
+    padding: 10px 20px;
+    vertical-align: middle;
+}
+
+.info-text {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+form input, form textarea{
+    display: block;
+    font-size:18px;
+    padding: 10px 2px;
+    border:solid 1px #aacfe4;
+    width: 500px;
+    margin:10px 0 20px 0px;
+}
+
+button {
+    display:inline-block;
+    padding: 8px 15px;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.15em;
+    font-size: 20px;
+    box-sizing: border-box;
+    color:#FFFFFF;
+    background-color: rgb(48, 56, 158);
+    text-align:center;
+    position:relative;
+    cursor: pointer;
+}
+
+.inline-btn {
+    display:inline-block;
+}
+
+.inline-input {
+    display:inline-block;
+}
+
+
+.form-box {
+    width: auto;
+    height: auto;
+    background-color:#CECECE;
+    color: rgb(32, 32, 32);
+    padding: 60px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+}
+
+.centre-form {
+    text-align: center;
+    align-items: center;
+    
+}
+
+.login-box {
+    margin-top: 50px;
+    padding: 30px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-box input {
+    width: 100%
+}
+
+.form-box h1 {
+    margin: 0px 0px 20px 0px;
+    padding-bottom: 10px;
+    font-size:32px; 
+}
+
+.form-border {
+    background: linear-gradient(180deg, rgba(32, 32, 32, 0) 30.13%, #910E0E 91.53%);
+    padding: 25px;
+    margin-top: 40px;
+    width: auto;
+    margin: 40px auto;
+}
+
+.wide {
+    width: 90%;
+    margin: 40px 40px;
 }
 

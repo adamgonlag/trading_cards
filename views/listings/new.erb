@@ -1,0 +1,12 @@
+<section class="form-border">
+    <section class="form-box">
+        <h1>Add card to Marketplace</h1>
+        <form action="/listings" method="POST" >
+            <input type="hidden" name="card_id" value=<%= card_id %>>
+            <label for="price">Price</label>
+            <input type="number" name="price">
+            <button type="submit">Add</button>
+            <a href="/cards/<%= card_id %>"><button type="button">Cancel</button></a>
+        </form>
+    </section>
+</section>
